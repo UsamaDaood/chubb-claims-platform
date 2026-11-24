@@ -1,0 +1,14 @@
+# Activate with: SPRING_PROFILES_ACTIVE=kafka  (and `docker compose up -d` at repo root)
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      acks: all
+      properties:
+        enable.idempotence: true
+    consumer:
+      auto-offset-reset: earliest
+
+claims:
+  events:
+    transport: kafka

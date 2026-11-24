@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: claims-platform
+  datasource:
+    url: jdbc:h2:mem:claims;DB_CLOSE_DELAY=-1
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop   # sprint shortcut; production = Flyway migrations on Postgres
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+claims:
+  sla-days: 5                    # decision SLA measured from submission
+  officer-approval-limit: 50000  # above this an officer must escalate to a manager
+  outbox:
+    poll-ms: 500
+  events:
+    transport: inprocess         # inprocess | kafka  (see application-kafka.yml)
+    topic: claims.events
